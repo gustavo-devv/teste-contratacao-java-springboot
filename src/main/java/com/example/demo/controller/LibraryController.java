@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,11 +10,8 @@ import com.example.demo.repository.LibraryRepository;
 @Controller
 public class LibraryController {
 
-    private final LibraryRepository repo;
-
-    public LibraryController(LibraryRepository repo) {
-        this.repo = repo;
-    }
+    @Autowired
+    private LibraryRepository repo;
 
     @GetMapping("/id")
     public Library findById(Integer id) {
