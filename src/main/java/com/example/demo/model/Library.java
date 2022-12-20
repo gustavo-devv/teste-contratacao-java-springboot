@@ -18,6 +18,10 @@ public class Library {
     public Library() {
     }
 
+    public Library(Integer id) {
+        this.id = id;
+    }
+
     public Library(Integer id, String name, String address) {
         this.id = id;
         this.name = name;

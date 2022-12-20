@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +22,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Autor</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Library</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -33,9 +34,11 @@
                             <td class="col-4" scope="row" th:text="${book.name}">name</td>
                             <td class="col-2" scope="row" th:text="${book.author}">author</td>
                             <td class="col-2" scope="row" th:text="${book.status}">status</td>
-                            <td class="col-1"><a href="#">Detalhes</a></td>
+                            <td class="col-2" scope="row" th:text="${{book.library}}">library</td>
+                            <td class="col-1"><a th:href="@{/books/{id}(id = ${book.id})}">Detalhes</a></td>
+                            <td class="col-1"><a th:href="@{/books/{id}/edit(id = ${book.id})}">Editar</a></td>
                             <!-- <td class="col-1">http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=4214112<a href="#">Editar</a></td> -->
-                            <td class="col-1"><a href="#">Deletar</a></td>
+                            <td class="col-1"><a href="@{/books/{id}/delete(id = ${book.id})">Deletar</a></td>
                         </tr>
                     </tbody>
                 </table>

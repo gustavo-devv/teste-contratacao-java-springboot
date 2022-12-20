@@ -1,13 +1,27 @@
 package com.example.demo.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.controller.LibraryController;
 import com.example.demo.enums.BookStatus;
 import com.example.demo.model.Book;
+import com.example.demo.model.Library;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class NewBookDTO {
 
+    @NotBlank
+    @NotNull
     private String author;
+    @NotBlank
+    @NotNull
     private String name;
+    @NotBlank
+    @NotNull
     private BookStatus status;
+    private Integer library_id;
 
     public String getAuthor() {
         return author;
@@ -33,6 +47,22 @@ public class NewBookDTO {
         this.status = status;
     }
 
+    public Integer getLibrary_id() {
+        return library_id;
+    }
+
+    public void setLibrary_id(Integer library_id) {
+        this.library_id = library_id;
+    }
+
+    public void fromBook(Book book) {
+        this.name = book.getName();
+        this.author = book.getAuthor();
+        this.status = book.getStatus();
+        this.library_id = book.getLibrary().getId();
+        // this.library_id = book.getLibrary();
+    }
+
     public Book toBook() {
         Book book = new Book();
         book.setAuthor(this.author);
@@ -46,6 +76,7 @@ public class NewBookDTO {
         return "NewBookDTO{" +
                 "author='" + author + " \'" +
                 ", name='" + name +
-                ", status='" + status + "}";
+                "', status='" + status +
+                "', library='" + library_id + "}";
     }
 }

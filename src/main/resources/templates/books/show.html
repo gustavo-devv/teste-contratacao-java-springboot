@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Cadastro de livros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Book</title>
 </head>
 <body>
-    <div class="container" >
+    <div class="container">
         <div class="row">
-            <h1>Lista de Livros</h1>
+            <b>Book #</b> <span th:text="${book.id}"></span>
         </div>
         <div class="row">
             <div class="col-12">
@@ -22,25 +22,48 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Autor</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Library</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="book : ${book}">
+                        <tr>
                             <th class="col-1" scope="row" th:text="${book.id}">id</th>
                             <td class="col-4" scope="row" th:text="${book.name}">name</td>
                             <td class="col-2" scope="row" th:text="${book.author}">author</td>
                             <td class="col-2" scope="row" th:text="${book.status}">status</td>
-                            <td class="col-1"><a href="#">Detalhes</a></td>
-                            <!-- <td class="col-1">http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=4214112<a href="#">Editar</a></td> -->
+                            <td class="col-2" scope="row" th:text="${{book.library}}">library</td>
+                            <td class="col-1"><a th:href="@{/books/{id}/edit(id = ${book.id})}">Editar</a></td>
                             <td class="col-1"><a href="#">Deletar</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <a href="/books/">Voltar</a>
         </div>
     </div>
+    <!-- <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <b>Book #</b> <span th:text="${book.id}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <b>Name:</b> <span th:text="${book.name}"></span><br/>
+                <b>Author:</b> <span th:text="${book.author}"></span><br/>
+                <b>Status:</b> <span th:text="${book.status}"></span><br/>
+                <b>Library:</b> <span th:text="${{book.library}}"></span><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#">Editar</a> 
+                <a href="/books">Voltar</a>
+            </div>
+        </div>
+    </div> -->
 </body>
 </html>

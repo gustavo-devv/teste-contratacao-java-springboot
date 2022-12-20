@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,11 +19,12 @@
       </div>
       <div class="container">
         <div class="row">
-          <form action="/books" method="POST">
+          <form th:object="${newBookDTO}" action="/books/" method="POST">
             <div class="mb-3">
               <label class="form-label">Name</label>
-              <input class="form-control" type="text" name="name" />
-              <div></div>
+              <input class="form-control" type="text" name="name"  />
+              
+              <div class="invalid-feedback"></div>
             </div>
             <div class="mb-3">
               <label class="form-label">Author</label>
@@ -37,6 +38,16 @@
                   th:each="status : ${status}"
                   th:value="${status}"
                   th:text="${status}"
+                ></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Biblioteca</label>
+              <select class="form-select" name="library_id">
+                <option
+                  th:each="library_id : ${library}"
+                  th:value="${{library_id}}"
+                  th:text="${{library_id}}"
                 ></option>
               </select>
             </div>
